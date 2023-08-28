@@ -1,22 +1,20 @@
 package org.gt.headhunterkingdoms.MySQL;
 
+import org.gt.headhunterkingdoms.API.ConfigManager;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLManager {
-    final String username="root";
-    final String password="";
-    final String url = "jdbc:mysql://127.0.0.1/GT?user=root&password=&serverTimezone=UTC";
-
     static Connection connection;
 
     public boolean isConnected(){
-        return (connection == null ? false : true);
+        return connection != null;
     }
-    public void setConnection() throws SQLException, ClassNotFoundException{
+    public void setConnection(ConfigManager manager) throws SQLException, ClassNotFoundException{
         if(!isConnected()){
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(manager.getUrl(), manager.getUserName(), manager.getPassword());
         }
     }
     public void removeConnection() throws SQLException, ClassNotFoundException{

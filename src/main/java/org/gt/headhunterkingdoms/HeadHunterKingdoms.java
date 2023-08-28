@@ -42,7 +42,7 @@ public final class HeadHunterKingdoms extends JavaPlugin implements PluginMessag
         XConomyAPI xcapi = new XConomyAPI();
 
         try {
-            sqlManager.setConnection();
+            sqlManager.setConnection(configManager);
         } catch (SQLException | ClassNotFoundException er) {
             Bukkit.getLogger().info("Database is not connected");
         }
